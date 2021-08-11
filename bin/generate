@@ -1,0 +1,22 @@
+#!/usr/local/bin/php
+<?php require __DIR__.'/../vendor/autoload.php';
+
+use Spatie\TemporaryDirectory\TemporaryDirectory;
+
+if (!shell_exec("which jsdoc wget unzip")) {
+    throw new Exception('You must have these installed: unzip, wget, jsdoc.');
+}
+
+$temporaryDirectory = (new TemporaryDirectory())->create();
+
+$dirPath     = $temporaryDirectory->path();
+$zipUrl      = "https://github.com/fabricjs/fabric.js/archive/refs/heads/master.zip";
+$zipPath     = "/$dirPath/master.zip";
+$classesPath = "/$dirPath/fabric.js-master/src/shapes/";
+$astJsonPath = "/$dirPath/jsdoc-ast.json";
+
+shell_exec("wget $zipUrl -P $dirPath");
+shell_exec("unzip $zipPath -d $dirPath");
+shell_exec("jsdoc -X $classesPath > $astJsonPath");
+
+// TODO: Add parser

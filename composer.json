@@ -1,0 +1,26 @@
+{
+    "name": "osbre/fabric-schema",
+    "type": "library",
+    "require-dev": {
+        "spatie/temporary-directory": "^2.0",
+        "symfony/var-dumper": "^5.3",
+        "phpunit/phpunit": "^9.5"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Osbre\\FabricSchema\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Osbre\\FabricSchema\\Tests\\": "tests"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ostap Bregin",
+            "email": "osbre@protonmail.com"
+        }
+    ]
+}
