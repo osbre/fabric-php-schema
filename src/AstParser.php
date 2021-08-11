@@ -7,16 +7,6 @@ class AstParser
     /** @var array<string, string> */
     protected array $objects;
 
-    /** @var string[] */
-    protected array $typesMapping = [
-        'Number'  => 'int',
-        'String'  => 'string',
-        'Object'  => 'array',
-        'Array'   => 'array',
-        'Boolean' => 'bool',
-        'any'     => '',
-    ];
-
     public function parse(array $astData): array
     {
         $fileNames = $this->getFileNames();
@@ -73,10 +63,10 @@ class AstParser
     protected function transformType(string $type): ?string
     {
         return match ($type) {
-            'Number' => 'int',
-            'String' => 'string',
-            'Object', 'Array' => 'array',
-            'Boolean' => 'bool',
+            'Number', 'number' => 'int',
+            'String', 'string' => 'string',
+            'Object', 'Array', 'object', 'array' => 'array',
+            'Boolean', 'boolean' => 'bool',
             default => null,
         };
     }
